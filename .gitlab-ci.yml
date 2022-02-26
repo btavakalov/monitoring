@@ -1,0 +1,16 @@
+stages:
+  - deploy
+
+variables:
+  GIT_DEPTH: 1
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+
+Up:
+  stage: deploy
+  tags:
+    - dev
+  script:
+    - docker-compose up --build -d
